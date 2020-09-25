@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return result;
             }catch (Exception e) {
+                Log.e("exception", String.valueOf(e));
                 e.printStackTrace();
                 return null;
             }
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 String weatherInfo = jsonObject.getString("weather");
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         DownloadTask task = new DownloadTask();
         try{
             String encodedName = URLEncoder.encode(editText.getText().toString(),"UTF-8");
-            task.execute("https://openweathermap.org/data/2.5/weather?q="+encodedName+"&appid=b6907d289e10d714a6e88b30761fae22");
+            task.execute("https://api.openweathermap.org/data/2.5/weather?q="+encodedName+"&appid=4813d029496e561abbb4524d11129b0a");
             InputMethodManager mgr =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             mgr.hideSoftInputFromWindow(editText.getWindowToken(),0);
 
